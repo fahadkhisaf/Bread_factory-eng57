@@ -1,12 +1,19 @@
-# define the tests before we code the functions
+import unittest
 from bread_factory import *
-# test 1
-print("When make dough is called with 'water' and 'flour' it should return 'dough'")
 
-print(make_dough('water','flour') == 'dough')
-print('got', make_dough('water','flour'))
+class TestFactoryFunctions(unittest.TestCase):
+    # test 1
+    def test_make_dough(self):
+        self.assertEqual(make_dough('water','flour'),'dough')
+        self.assertEqual(make_dough('water','oats'),'not dough')
+        self.assertEqual(make_dough('water','wholegrain flour'),'brown dough')
 
-# test 2 - make_dough()
-print("When make dough is called with 'water' and 'cement' it should return 'not dough'")
-make_dough('water','cement') == 'not dough'
-print('got', make_dough('water','cement'))
+    def test_make_bread(self):
+        self.assertEqual(make_bread('dough'), 'bread')
+        self.assertEqual(make_bread('not dough'), 'not bread')
+        self.assertEqual(make_bread('brown dough'), 'brown bread')
+
+if __name__ == '__main__':
+    unittest.main()
+
+
